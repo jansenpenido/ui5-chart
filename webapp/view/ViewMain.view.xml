@@ -1,0 +1,31 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data" xmlns:layout="sap.ui.layout"
+	controllerName="com.jp.chart.ui5-chart.controller.ViewMain" displayBlock="true">
+	<App id="idAppControl">
+		<pages>
+			<Page title="{i18n>title}">
+				<content>
+					<viz:Popover id="idPopOver"></viz:Popover>
+					<viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}" height='100%' width="100%" vizType='column'>
+						<viz:dataset>
+							<viz.data:FlattenedDataset data="{chartData>/milk}">
+								<viz.data:dimensions>
+									<viz.data:DimensionDefinition name="Seasons" value="{chartData>Seasons}"/>
+								</viz.data:dimensions>
+								<viz.data:measures>
+									<viz.data:MeasureDefinition name="Revenue" value="{chartData>Revenue}"/>
+									<viz.data:MeasureDefinition name="Cost" value="{chartData>Cost}"/>
+								</viz.data:measures>
+							</viz.data:FlattenedDataset>
+						</viz:dataset>
+						<viz:feeds>
+							<viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="Revenue"/>
+							<viz.feeds:FeedItem id='valueAxisFeed2' uid="valueAxis" type="Measure" values="Cost"/>
+							<viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="Seasons"/>
+						</viz:feeds>
+					</viz:VizFrame>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
